@@ -1,0 +1,124 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.11.0 (39ad614)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: db
+    spec:
+      containers:
+      - env:
+        - name: MAGENTO_ADMIN_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_EMAIL
+              name: db-env
+        - name: MAGENTO_ADMIN_FIRSTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_FIRSTNAME
+              name: db-env
+        - name: MAGENTO_ADMIN_LASTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_LASTNAME
+              name: db-env
+        - name: MAGENTO_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_PASSWORD
+              name: db-env
+        - name: MAGENTO_ADMIN_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_USERNAME
+              name: db-env
+        - name: MAGENTO_BACKEND_FRONTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_BACKEND_FRONTNAME
+              name: db-env
+        - name: MAGENTO_BASE_URL_SECURE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_BASE_URL_SECURE
+              name: db-env
+        - name: MAGENTO_DEFAULT_CURRENCY
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_DEFAULT_CURRENCY
+              name: db-env
+        - name: MAGENTO_LANGUAGE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_LANGUAGE
+              name: db-env
+        - name: MAGENTO_TIMEZONE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_TIMEZONE
+              name: db-env
+        - name: MAGENTO_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_URL
+              name: db-env
+        - name: MAGENTO_USE_SECURE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_USE_SECURE
+              name: db-env
+        - name: MAGENTO_USE_SECURE_ADMIN
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_USE_SECURE_ADMIN
+              name: db-env
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: db-env
+        - name: MYSQL_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_HOST
+              name: db-env
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_PASSWORD
+              name: db-env
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_ROOT_PASSWORD
+              name: db-env
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_USER
+              name: db-env
+        image: mysql:5.6.23
+        name: db
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/mysql/data
+          name: db-data
+      restartPolicy: Always
+      volumes:
+      - name: db-data
+        persistentVolumeClaim:
+          claimName: db-data
+status: {}
