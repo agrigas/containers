@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  MAGENTO_ADMIN_EMAIL: amdin@example.com
+  MAGENTO_ADMIN_FIRSTNAME: Admin
+  MAGENTO_ADMIN_LASTNAME: MyStore
+  MAGENTO_ADMIN_PASSWORD: magentorocks1
+  MAGENTO_ADMIN_USERNAME: admin
+  MAGENTO_BACKEND_FRONTNAME: admin
+  MAGENTO_BASE_URL_SECURE: "0"
+  MAGENTO_DEFAULT_CURRENCY: NZD
+  MAGENTO_LANGUAGE: en_GB
+  MAGENTO_TIMEZONE: Pacific/Auckland
+  MAGENTO_URL: http://local.magento
+  MAGENTO_USE_SECURE: "0"
+  MAGENTO_USE_SECURE_ADMIN: "0"
+  MYSQL_DATABASE: magento
+  MYSQL_HOST: db
+  MYSQL_PASSWORD: magento
+  MYSQL_ROOT_PASSWORD: myrootpassword
+  MYSQL_USER: magento
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web-env
+  name: web-env

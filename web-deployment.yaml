@@ -1,0 +1,118 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.11.0 (39ad614)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: web
+  name: web
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: web
+    spec:
+      containers:
+      - env:
+        - name: MAGENTO_ADMIN_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_EMAIL
+              name: web-env
+        - name: MAGENTO_ADMIN_FIRSTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_FIRSTNAME
+              name: web-env
+        - name: MAGENTO_ADMIN_LASTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_LASTNAME
+              name: web-env
+        - name: MAGENTO_ADMIN_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_PASSWORD
+              name: web-env
+        - name: MAGENTO_ADMIN_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_ADMIN_USERNAME
+              name: web-env
+        - name: MAGENTO_BACKEND_FRONTNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_BACKEND_FRONTNAME
+              name: web-env
+        - name: MAGENTO_BASE_URL_SECURE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_BASE_URL_SECURE
+              name: web-env
+        - name: MAGENTO_DEFAULT_CURRENCY
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_DEFAULT_CURRENCY
+              name: web-env
+        - name: MAGENTO_LANGUAGE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_LANGUAGE
+              name: web-env
+        - name: MAGENTO_TIMEZONE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_TIMEZONE
+              name: web-env
+        - name: MAGENTO_URL
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_URL
+              name: web-env
+        - name: MAGENTO_USE_SECURE
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_USE_SECURE
+              name: web-env
+        - name: MAGENTO_USE_SECURE_ADMIN
+          valueFrom:
+            configMapKeyRef:
+              key: MAGENTO_USE_SECURE_ADMIN
+              name: web-env
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: web-env
+        - name: MYSQL_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_HOST
+              name: web-env
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_PASSWORD
+              name: web-env
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_ROOT_PASSWORD
+              name: web-env
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_USER
+              name: web-env
+        image: alexcheng/magento2
+        name: web
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}
